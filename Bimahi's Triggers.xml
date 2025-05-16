@@ -103,20 +103,19 @@
               <Folder Id="92ced515-6a27-4525-b967-b0781acd6fd0" Name="Tank Mechanic" Enabled="true">
                 <Folders />
                 <Triggers>
-                  <Trigger Enabled="true" Name="Abominable Blink" Id="7bee5851-d684-4ab4-8247-7104173ca937" RegularExpression="^20\|(?:[^\|]+\|){3}A589">
+                  <Trigger Enabled="true" Source="FFXIVNetwork" Name="Abominable Blink" Id="7bee5851-d684-4ab4-8247-7104173ca937" RegularExpression="^20\|(?:[^\|]+\|){3}A589" PeriodRefire="Deny" RefirePeriodExpression="3000">
                     <Actions>
                       <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Flare to wall" ActionType="UseTTS">
                         <Condition Enabled="false" Grouping="Or" />
                       </Action>
                     </Actions>
                     <Condition Enabled="false" Grouping="Or" />
-                    <Conditions />
                   </Trigger>
                 </Triggers>
               </Folder>
             </Folders>
             <Triggers>
-              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Stoneringer" Id="3e709683-e52a-4230-a614-985fb4183d5e" RegularExpression="^20\|(?:[^\|]+\|){3}(?&lt;Stoneringer&gt;A5(?:5[D|E])|(?:7F|80))" PeriodRefire="Deny" RefirePeriodExpression="5000">
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Stoneringer" Id="3e709683-e52a-4230-a614-985fb4183d5e" RegularExpression="^20\|(?:[^\|]+\|){3}(?&lt;Stoneringer&gt;A5(?:5[D|E])|A5(?:7F|80))" PeriodRefire="Deny" RefirePeriodExpression="5000">
                 <Actions>
                   <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Storing sword, go in" ActionType="UseTTS">
                     <Condition Enabled="true" Grouping="Or">
@@ -133,17 +132,34 @@
                 </Actions>
                 <Condition Enabled="false" Grouping="Or" />
               </Trigger>
-              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Smash here/there" Id="9b694867-95d2-4abe-8d91-585bfca61d36" RegularExpression="^20\|(?:[^\|]+\|){3}(?&lt;Smash&gt;A5(?:(?:60)|(?:5F)))" PeriodRefire="Deny" RefirePeriodExpression="5000">
+              <Trigger Enabled="true" Source="FFXIVNetwork" Sequential="True" Name="Smash here/there" Id="9b694867-95d2-4abe-8d91-585bfca61d36" RegularExpression="^20\|(?:[^\|]+\|){3}(?&lt;Smash&gt;A5(?:(?:60)|(?:5F)))" PeriodRefire="Deny" RefirePeriodExpression="5000">
                 <Actions>
-                  <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Tanks out, Party in" ActionType="UseTTS">
-                    <Condition Enabled="true" Grouping="Or">
-                      <ConditionSingle Enabled="true" ExpressionL="A560" ExpressionTypeL="String" ExpressionR="${Smash}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Everyone in, thenTanks in, party out" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="A55F" ExpressionTypeL="String" ExpressionR="${Smash}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="in" ExpressionTypeL="String" ExpressionR="${var:Stored_Swing}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
                     </Condition>
                   </Action>
-                  <Action OrderNumber="2" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Tanks in, party out" ActionType="UseTTS">
-                    <Condition Enabled="true" Grouping="Or">
-                      <ConditionSingle Enabled="true" ExpressionL="A55F" ExpressionTypeL="String" ExpressionR="${Smash}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                  <Action OrderNumber="2" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Everyone in, then Tanks out, Party in" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="A560" ExpressionTypeL="String" ExpressionR="${Smash}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="in" ExpressionTypeL="String" ExpressionR="${var:Stored_Swing}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
                     </Condition>
+                  </Action>
+                  <Action OrderNumber="3" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Everyone out, then Tanks in, party out" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="A55F" ExpressionTypeL="String" ExpressionR="${Smash}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="out" ExpressionTypeL="String" ExpressionR="${var:Stored_Swing}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="4" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Everyone out, then Tanks out, Party in" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="And">
+                      <ConditionSingle Enabled="true" ExpressionL="A560" ExpressionTypeL="String" ExpressionR="${Smash}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="out" ExpressionTypeL="String" ExpressionR="${var:Stored_Swing}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="5" SoundRouting="None" TTSRouting="None" VariableName="Stored_Swing" ActionType="Variable" ExecutionDelayExpression="5000">
+                    <Condition Enabled="false" Grouping="Or" />
                   </Action>
                 </Actions>
                 <Condition Enabled="false" Grouping="Or" />
@@ -162,12 +178,28 @@
                   </Action>
                 </Actions>
                 <Condition Enabled="false" Grouping="Or" />
-                <Conditions />
               </Trigger>
               <Trigger Enabled="true" Source="FFXIVNetwork" Name="Pulp Smash" Id="93431883-7480-481e-ac0b-dfd96bc5c84c" RegularExpression="^20\|(?:[^\|]+\|){3}(?:A577)" PeriodRefire="Deny" RefirePeriodExpression="5000">
                 <Actions>
                   <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Stack, then clocks" ActionType="UseTTS">
                     <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Stoneringer Variables" Id="2fe7d6a4-236c-45ba-96d0-b8121dc74d73" RegularExpression="^20\|(?:[^\|]+\|){3}(?&lt;Stoneringer&gt;A5(?:5[D|E]))" PeriodRefire="Deny" RefirePeriodExpression="5000">
+                <Actions>
+                  <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Storing sword, go in" VariableOp="SetString" VariableName="Stored_Swing" VariableExpression="in" VariablePersist="True" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="A55E" ExpressionTypeL="String" ExpressionR="${Stoneringer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="A580" ExpressionTypeL="String" ExpressionR="${Stoneringer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Storing club, go out" VariableOp="SetString" VariableName="Stored_Swing" VariableExpression="out" ActionType="Variable">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="A55D" ExpressionTypeL="String" ExpressionR="${Stoneringer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="A57F" ExpressionTypeL="String" ExpressionR="${Stoneringer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
                   </Action>
                 </Actions>
                 <Condition Enabled="false" Grouping="Or" />
