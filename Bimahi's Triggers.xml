@@ -71,9 +71,102 @@
                 </Actions>
                 <Condition Enabled="false" Grouping="Or" />
               </Trigger>
-              <Trigger Enabled="true" Name="Lightning Storm" Id="ec834ab4-0364-4222-9131-24df08817c53" RegularExpression="^21\|(?:[^|]*\|){3}A69E">
+              <Trigger Enabled="false" Source="FFXIVNetwork" Name="Lightning Storm" Id="ec834ab4-0364-4222-9131-24df08817c53" RegularExpression="^21\|(?:[^|]*\|){3}A69E\|(?:[^|]*\|){2}(?&lt;player_name&gt;[^|]*)" PeriodRefire="Deny" RefirePeriodExpression="3000">
                 <Actions>
                   <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Go out" ActionType="UseTTS">
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Action>
+                </Actions>
+                <Condition Enabled="true" Grouping="Or">
+                  <ConditionSingle Enabled="true" ExpressionL="${player_name}" ExpressionTypeL="String" ExpressionR="${_ffxivplayer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                </Condition>
+              </Trigger>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Double Style (Fire/Lightning)" Id="32c06093-9d17-45a2-87d8-36a530d94ebb" RegularExpression="^20\|(?:[^\|]*\|){3}(?&lt;Spell_ID&gt;A68[7|9])" PeriodRefire="Deny" RefirePeriodExpression="3000">
+                <Actions>
+                  <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Fire stacks, dodge arrows" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${Spell_ID}" ExpressionTypeL="String" ExpressionR="A687" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Lightning spreads, dodge arrows" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${Spell_ID}" ExpressionTypeL="String" ExpressionR="A689" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+            </Triggers>
+          </Folder>
+          <Folder ZoneFilterEnabled="True" Id="7d6c20f3-ff32-41d0-a57a-3ca50c247df4" ZoneFilterRegularExpression="^AAC\ Cruiserweight\ M3\ \(Savage\)$" Name="M7S" Enabled="true">
+            <Folders>
+              <Folder Id="92ced515-6a27-4525-b967-b0781acd6fd0" Name="Tank Mechanic" Enabled="true">
+                <Folders />
+                <Triggers>
+                  <Trigger Enabled="true" Name="Abominable Blink" Id="7bee5851-d684-4ab4-8247-7104173ca937" RegularExpression="^20\|(?:[^\|]+\|){3}A589">
+                    <Actions>
+                      <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Flare to wall" ActionType="UseTTS">
+                        <Condition Enabled="false" Grouping="Or" />
+                      </Action>
+                    </Actions>
+                    <Condition Enabled="false" Grouping="Or" />
+                    <Conditions />
+                  </Trigger>
+                </Triggers>
+              </Folder>
+            </Folders>
+            <Triggers>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Stoneringer" Id="3e709683-e52a-4230-a614-985fb4183d5e" RegularExpression="^20\|(?:[^\|]+\|){3}(?&lt;Stoneringer&gt;A5(?:5[D|E])|(?:7F|80))" PeriodRefire="Deny" RefirePeriodExpression="5000">
+                <Actions>
+                  <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Storing sword, go in" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="A55E" ExpressionTypeL="String" ExpressionR="${Stoneringer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="A580" ExpressionTypeL="String" ExpressionR="${Stoneringer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Storing club, go out" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="A55D" ExpressionTypeL="String" ExpressionR="${Stoneringer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                      <ConditionSingle Enabled="true" ExpressionL="A57F" ExpressionTypeL="String" ExpressionR="${Stoneringer}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Smash here/there" Id="9b694867-95d2-4abe-8d91-585bfca61d36" RegularExpression="^20\|(?:[^\|]+\|){3}(?&lt;Smash&gt;A5(?:(?:60)|(?:5F)))" PeriodRefire="Deny" RefirePeriodExpression="5000">
+                <Actions>
+                  <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Tanks out, Party in" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="A560" ExpressionTypeL="String" ExpressionR="${Smash}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Tanks in, party out" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="A55F" ExpressionTypeL="String" ExpressionR="${Smash}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Brutal Swing" Id="46fe6046-62e8-4ff1-ad23-c28744fc2240" RegularExpression="^20\|(?:[^\|]+\|){3}(?&lt;Swing&gt;A56[1|2])" PeriodRefire="Deny" RefirePeriodExpression="5000">
+                <Actions>
+                  <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Go out" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="A561" ExpressionTypeL="String" ExpressionR="${Swing}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Go in" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="A562" ExpressionTypeL="String" ExpressionR="${Swing}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+                <Conditions />
+              </Trigger>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Pulp Smash" Id="93431883-7480-481e-ac0b-dfd96bc5c84c" RegularExpression="^20\|(?:[^\|]+\|){3}(?:A577)" PeriodRefire="Deny" RefirePeriodExpression="5000">
+                <Actions>
+                  <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Stack, then clocks" ActionType="UseTTS">
                     <Condition Enabled="false" Grouping="Or" />
                   </Action>
                 </Actions>
@@ -81,10 +174,6 @@
                 <Conditions />
               </Trigger>
             </Triggers>
-          </Folder>
-          <Folder ZoneFilterEnabled="True" Id="7d6c20f3-ff32-41d0-a57a-3ca50c247df4" ZoneFilterRegularExpression="^AAC\ Cruiserweight\ M3\ \(Savage\)$" Name="M7S" Enabled="true">
-            <Folders />
-            <Triggers />
           </Folder>
           <Folder ZoneFilterEnabled="True" Id="ace19b9f-dc2f-42d3-8cd6-7e2fe94d3a5b" ZoneFilterRegularExpression="^AAC\ Cruiserweight\ M4\ \(Savage\)$" Name="M8S" Enabled="true">
             <Folders />
