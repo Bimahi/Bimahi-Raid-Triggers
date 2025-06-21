@@ -38,21 +38,21 @@
               </Folder>
             </Folders>
             <Triggers>
-              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Color Clash" Id="6b700347-e729-47ee-bedc-a8d2ef1e7e30" RegularExpression="Sugar Riot\|(?&lt;Spell_ID&gt;[^\|]+)\|Color Clash" PrevActionsRefire="Deny" PeriodRefire="Deny" RefirePeriodExpression="10000">
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Color Clash" Id="6b700347-e729-47ee-bedc-a8d2ef1e7e30" RegularExpression="Sugar Riot\|(?&lt;Spell_ID&gt;[^\|]+)\|Color Clash" PrevActionsRefire="Deny" PeriodRefire="Deny" RefirePeriodExpression="500">
                 <Actions>
                   <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Buddies" ActionType="UseTTS">
                     <Condition Enabled="true" Grouping="Or">
                       <ConditionSingle Enabled="true" ExpressionL="${Spell_ID}" ExpressionTypeL="String" ExpressionR="A68D" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
                     </Condition>
                   </Action>
-                  <Action OrderNumber="2" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Buddies" ActionType="UseTTS" ExecutionDelayExpression="19500">
-                    <Condition Enabled="true" Grouping="Or">
-                      <ConditionSingle Enabled="true" ExpressionL="${Spell_ID}" ExpressionTypeL="String" ExpressionR="A68D" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
-                    </Condition>
-                  </Action>
-                  <Action OrderNumber="3" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Light Parties" ActionType="UseTTS">
+                  <Action OrderNumber="2" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Light Parties" ActionType="UseTTS">
                     <Condition Enabled="true" Grouping="Or">
                       <ConditionSingle Enabled="true" ExpressionL="${Spell_ID}" ExpressionTypeL="String" ExpressionR="A68B" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="3" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Buddies" ActionType="UseTTS" ExecutionDelayExpression="19500">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="${Spell_ID}" ExpressionTypeL="String" ExpressionR="A68D" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
                     </Condition>
                   </Action>
                   <Action OrderNumber="4" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Light Parties" ActionType="UseTTS" ExecutionDelayExpression="19500">
@@ -216,8 +216,62 @@
             </Triggers>
           </Folder>
           <Folder ZoneFilterEnabled="True" Id="ace19b9f-dc2f-42d3-8cd6-7e2fe94d3a5b" ZoneFilterRegularExpression="^AAC\ Cruiserweight\ M4\ \(Savage\)$" Name="M8S" Enabled="true">
-            <Folders />
-            <Triggers />
+            <Folders>
+              <Folder Id="bee32a3f-f605-46fe-b2e2-02aff0a8b73b" Name="Stone/Windfang" Enabled="true">
+                <Folders />
+                <Triggers>
+                  <Trigger Enabled="true" Source="FFXIVNetwork" Name="Windfang Intercards" Id="3d61e3e7-1a2e-4277-acc5-773c99395c70" RegularExpression="^20\|(?:[^\|]+\|){3}(?:A39D)">
+                    <Actions>
+                      <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Intercard pairs" ActionType="UseTTS">
+                        <Condition Enabled="false" Grouping="Or" />
+                      </Action>
+                    </Actions>
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Trigger>
+                  <Trigger Enabled="true" Source="FFXIVNetwork" Name="Windfang Cardinal" Id="eb917e95-f505-42c6-9c4a-6fe36e8ca465" RegularExpression="^20\|(?:[^\|]+\|){3}(?:A39E)">
+                    <Actions>
+                      <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Cardinal Pairs" ActionType="UseTTS">
+                        <Condition Enabled="false" Grouping="Or" />
+                      </Action>
+                    </Actions>
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Trigger>
+                  <Trigger Enabled="true" Source="FFXIVNetwork" Name="Stonefang Cardinals" Id="b293face-ab8e-4361-af22-f3cd53fd202d" RegularExpression="^20\|(?:[^\|]+\|){3}(?:A3A2)">
+                    <Actions>
+                      <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Cardinal Spreads" ActionType="UseTTS">
+                        <Condition Enabled="false" Grouping="Or" />
+                      </Action>
+                    </Actions>
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Trigger>
+                  <Trigger Enabled="true" Source="FFXIVNetwork" Name="Stonefang Intercardinals" Id="c6e93f4c-4ac4-49a7-a35c-4af354aa1ad6" RegularExpression="^20\|(?:[^\|]+\|){3}(?:A3A1)">
+                    <Actions>
+                      <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Intercard Spreads" ActionType="UseTTS">
+                        <Condition Enabled="false" Grouping="Or" />
+                      </Action>
+                    </Actions>
+                    <Condition Enabled="false" Grouping="Or" />
+                  </Trigger>
+                </Triggers>
+              </Folder>
+            </Folders>
+            <Triggers>
+              <Trigger Enabled="true" Source="FFXIVNetwork" Name="Revolutionary/Emeneint reign" Id="65e85fda-6a07-495e-ab60-b070125f66a1" RegularExpression="^20\|(?:[^\|]+\|){3}(?&lt;Spell_ID&gt;A93[1|0])">
+                <Actions>
+                  <Action OrderNumber="1" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Go in" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="A930" ExpressionTypeL="String" ExpressionR="${Spell_ID}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                  <Action OrderNumber="2" SoundRouting="None" TTSRouting="None" UseTTSTextExpression="Stay Out" ActionType="UseTTS">
+                    <Condition Enabled="true" Grouping="Or">
+                      <ConditionSingle Enabled="true" ExpressionL="A931" ExpressionTypeL="String" ExpressionR="${Spell_ID}" ExpressionTypeR="String" ConditionType="StringEqualNocase" />
+                    </Condition>
+                  </Action>
+                </Actions>
+                <Condition Enabled="false" Grouping="Or" />
+              </Trigger>
+            </Triggers>
           </Folder>
         </Folders>
         <Triggers />
